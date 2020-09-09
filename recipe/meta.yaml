@@ -1,0 +1,47 @@
+# adapted from the conda-forge srsly recipe
+{% set name = "srsly" %}
+{% set version = "0.2.0" %}
+{% set sha256sum = "aa02e2a62093ef09d7904343ee7381b9c9bab5b4f06960dfbeaa12035d0f0a3e" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256sum }}
+
+build:
+  number: 1
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - python {{ python }}
+    - pip {{ pip }}
+    - setuptools {{ setuptools }}
+    - wheel {{ wheel }} 
+  run:
+    - python {{ python }}
+
+test:
+  imports:
+    - srsly
+    - srsly.tests
+
+about:
+  home: http://github.com/explosion/srsly
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: 'Modern high-performance serialization utilities for Python'
+  description: "This package bundles some of the best Python serialization libraries into one standalone package, with a high-level API that makes it easy to write code that's correct across platforms and Pythons."
+  doc_url: https://github.com/explosion/srsly
+  dev_url: https://github.com/explosion/srsly
+
+extra:
+  recipe-maintainers:
+    - open-ce/open-ce-dev-team
