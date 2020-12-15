@@ -1,15 +1,14 @@
 # adapted from the conda-forge srsly recipe
 {% set name = "srsly" %}
-{% set version = "0.2.0" %}
-{% set sha256sum = "aa02e2a62093ef09d7904343ee7381b9c9bab5b4f06960dfbeaa12035d0f0a3e" %}
+{% set version = "1.0.4" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256sum }}
+  git_url: https://github.com/explosion/srsly.git
+  git_rev: v{{ version }}
 
 build:
   number: 1
@@ -24,6 +23,7 @@ requirements:
     - pip {{ pip }}
     - setuptools {{ setuptools }}
     - wheel {{ wheel }} 
+    - cython {{ cython }}
   run:
     - python {{ python }}
 
