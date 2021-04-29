@@ -5,4 +5,4 @@ tests:
   - name: Run srsly tests
     command: |
         SRSLY_LOCATION=$(python -c "import os; import srsly; print(os.path.dirname(srsly.__file__))")
-        python -m pytest -k "not test_ujson" $SRSLY_LOCATION
+        python -m pytest $SRSLY_LOCATION
